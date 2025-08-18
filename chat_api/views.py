@@ -5,7 +5,7 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
-from .serializers import UserRegistrationSerializer, UserLoginSerializer
+from .serializers import UserRegistrationSerializer, ChatSerializer
 from .models import Chat, User
 from django.contrib.auth import login, get_user_model
 
@@ -37,26 +37,53 @@ class UserLoginView(ObtainAuthToken):
 
 class ChatView(CreateAPIView):
     #Use DRF's permission class to ensure the user is authenticated
-
     permission_classes = [IsAuthenticated]
 
-    def post(self, request):
+    def post(self,request):
         user = request.user
-        message = request.data.get('message')
 
-        if not message:
-            return Response({'error': 'Message is required'}, status=status.HTTP_400_BAD_REQUEST)
-
+        #check for sufficient tokens before processing the message
         if user.tokens < 100:
-            return Response({'error': 'Insufficient tokens'}, status=status.HTTP_402_PAYMENT_REQUIRED) 
+            return Response({'error': 'Insufficient Tokens'}, status=status.HTTP_402_PAYMENT_REQUIRED)
+        
+        #Use the serializer to validate incoming data
+        serializer = ChatSerializer(data=request.data)
+        if serializer.is_valid():
+            message = serializer.validated_data['message'] # extract the validated message
 
-        user.tokens -= 100
-        user.save()
+            #deduct tokens
+            user.tokens -= 10
+            user.save()
 
-        ai_response = f"This is a dummy AI response to your message: '{message}'" 
-        Chat.objects.create(user=user, message=message, response=ai_response)
+            # Generate Dummy response
+            ai_response = f"This is a dummy AI response to your message: '{message}'"
 
-        return Response({'response': ai_response}, status=status.HTTP_200_OK)
+            #save the chat, including the user and the generated response
+            chat_instance = serializer.save(user=user, response=ai_response)
+
+            #Return the generated response using the serializer's data
+            return Response(ChatSerializer(chat_instance).data, status=status.HTTP_200_OK)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+#     def post(self, request):
+#         user = request.user
+#         message = request.data.get('message')
+
+#         if not message:
+#             return Response({'error': 'Message is required'}, status=status.HTTP_400_BAD_REQUEST)
+
+#         if user.tokens < 100:
+#             return Response({'error': 'Insufficient tokens'}, status=status.HTTP_402_PAYMENT_REQUIRED) 
+
+#         user.tokens -= 100
+#         user.save()
+
+#         ai_response = f"This is a dummy AI response to your message: '{message}'" 
+#         Chat.objects.create(user=user, message=message, response=ai_response)
+
+#         return Response({'response': ai_response}, status=status.HTTP_200_OK)
     
 class TokenBalanceView(GenericAPIView):
     permission_classes = [IsAuthenticated]
