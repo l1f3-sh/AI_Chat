@@ -28,7 +28,7 @@ class UserLoginView(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
         response = super().post(request, *args, **kwargs)
         if response.data['token']:
-            user = get_user_model().objects,get(username=request.data['username'])
+            user = get_user_model().objects.get(username=request.data['username'])
             login(request, user)
         return response
 
