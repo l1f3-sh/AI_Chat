@@ -14,6 +14,6 @@ class User(AbstractUser):
 class Chat(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     message = models.TextField()
-    respomse = models.TextField()
+    response = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
     

@@ -36,6 +36,7 @@ class UserLoginView(ObtainAuthToken):
 
 
 class ChatView(CreateAPIView):
+    serializer_class = ChatSerializer
     #Use DRF's permission class to ensure the user is authenticated
     permission_classes = [IsAuthenticated]
 
