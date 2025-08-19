@@ -30,7 +30,7 @@ Follow these steps to set up and run the project on your local machine.
 
 ### Prerequisites
 
-- Python 3.8+
+- Python 3.13+
 
 - `pip` and `venv`
 
