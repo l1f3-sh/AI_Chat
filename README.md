@@ -208,13 +208,13 @@ The initial implementation, while functional, had significant security and desig
 
     - **Initial Approach**: The original `User` model overrode the `save()` method to manually hash passwords using `make_password`. This is not standard practice and can be error-prone.
 
-    - **Refactored Solution**: We switched to inheriting from Django's `AbstractUser`. This leverages Django's built-in, secure authentication system. The `User.objects.create_user()` helper function now handles password hashing automatically and correctly.
+    - **Refactored Solution**: Switched to inheriting from Django's `AbstractUser`. This leverages Django's built-in, secure authentication system. The `User.objects.create_user()` helper function now handles password hashing automatically and correctly.
 
 2. **Challenge: Custom Token Authentication**
 
     - **Initial Approach**: A custom `AuthToken` model and a manual authentication view were created. This reinvents the wheel and misses out on the security features and integrations provided by DRF.
 
-    - **Refactored Solution**: We removed the custom token logic and integrated DRF's built-in `TokenAuthentication`. The login endpoint now uses DRF's `obtain_auth_token` view, which is robust and secure. Protected endpoints now use the simple `permission_classes = [IsAuthenticated]` decorator, making the code cleaner and more declarative.
+    - **Refactored Solution**: Removed the custom token logic and integrated DRF's built-in `TokenAuthentication`. The login endpoint now uses DRF's `obtain_auth_token` view, which is robust and secure. Protected endpoints now use the simple `permission_classes = [IsAuthenticated]` decorator, making the code cleaner and more declarative.
 
 ## Suggestions for Future Improvement
 
