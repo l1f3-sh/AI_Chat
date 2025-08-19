@@ -36,46 +36,45 @@ Follow these steps to set up and run the project on your local machine.
 
 ### Installation Steps
 
-1. **Clone the repository:**
+1. **Clone the repository and change into the directory:**
 
-    ```
-    git clone <your-repository-url>
-    cd <repository-name>
+    ```bash
+    git clone https://github.com/l1f3-sh/AI_Chat
+    cd AI_Chat
     
     ```
 
 2. **Create and activate a virtual environment:**
 
-    ```
+    ```bash
     # For macOS/Linux
     python3 -m venv .venv
     source .venv/bin/activate
     
     # For Windows
-    python -m venv venv
-    .\venv\Scripts\activate
+    python -m venv .venv
+    .\.venv\Scripts\activate
     
     ```
 
 3. **Install the required dependencies:**
 
-    ```
+    ```bash
     pip install -r requirements.txt
     
     ```
 
-    _(Note: If you don't have a `requirements.txt` file, you can install the packages directly: `pip install django djangorestframework`)_
 
 4. **Apply database migrations:** This will create the necessary database tables based on the models.
 
-    ```
+    ```bash
     python manage.py migrate
     
     ```
 
 5. **Run the development server:**
 
-    ```
+    ```bash
     python manage.py runserver
     
     ```
@@ -96,7 +95,7 @@ Creates a new user account and returns an authentication token.
 
 - **Body**:
 
-    ```
+    ```json
     {
         "username": "newuser",
         "password": "strongpassword123",
@@ -107,7 +106,7 @@ Creates a new user account and returns an authentication token.
 
 - **Success Response (201 CREATED)**:
 
-    ```
+    ```json
     {
         "message": "User registered successfully",
         "token": "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2"
@@ -125,7 +124,7 @@ Authenticates a user and returns their session token.
 
 - **Body**:
 
-    ```
+    ```json
     {
         "username": "newuser",
         "password": "strongpassword123"
@@ -135,7 +134,7 @@ Authenticates a user and returns their session token.
 
 - **Success Response (200 OK)**:
 
-    ```
+    ```json
     {
         "token": "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2"
     }
@@ -154,7 +153,7 @@ Sends a message to the chatbot. Requires token authentication.
 
 - **Body**:
 
-    ```
+    ```json
     {
         "message": "Hello, how does this work?"
     }
@@ -163,7 +162,7 @@ Sends a message to the chatbot. Requires token authentication.
 
 - **Success Response (200 OK)**:
 
-    ```
+    ```json
     {
         "message": "Hello, how does this work?",
         "response": "This is a dummy AI response to your message: 'Hello, how does this work?'",
@@ -174,18 +173,36 @@ Sends a message to the chatbot. Requires token authentication.
 
 - **Error Response (402 PAYMENT REQUIRED)**:
 
-    ```
+    ```json
     {
         "error": "Insufficient tokens"
     }
     
     ```
 
+### Chat History
+
+Retrieves the chat history. Requires Authentication
+
+- **Endpoint**: `GET /api/history/`
+- **Method**: GET
+- **Headers**: `Authorization: Token <your_auth_token>`
+- **Success Response(200 OK)**:
+
+    ```json
+    {
+        "message": "Hello",
+        "response": "This is a dummy AI response to your message: 'Hello'",
+        "timestamp": "2025-08-19T02:18:42.785233Z"
+    }
+    ```
+
+
 ### 4. Check Token Balance
 
 Retrieves the current user's token balance. Requires token authentication.
 
-- **Endpoint**: `GET /api/token-balance/`
+- **Endpoint**: `GET /api/token_balance/`
 
 - **Method**: `GET`
 
@@ -193,7 +210,7 @@ Retrieves the current user's token balance. Requires token authentication.
 
 - **Success Response (200 OK)**:
 
-    ```
+    ```json
     {
         "tokens": 3900
     }

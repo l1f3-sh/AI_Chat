@@ -1,4 +1,4 @@
-from rest_framework.generics import CreateAPIView, GenericAPIView
+from rest_framework.generics import CreateAPIView, GenericAPIView, ListAPIView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -67,27 +67,15 @@ class ChatView(CreateAPIView):
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
-#     def post(self, request):
-#         user = request.user
-#         message = request.data.get('message')
-
-#         if not message:
-#             return Response({'error': 'Message is required'}, status=status.HTTP_400_BAD_REQUEST)
-
-#         if user.tokens < 100:
-#             return Response({'error': 'Insufficient tokens'}, status=status.HTTP_402_PAYMENT_REQUIRED) 
-
-#         user.tokens -= 100
-#         user.save()
-
-#         ai_response = f"This is a dummy AI response to your message: '{message}'" 
-#         Chat.objects.create(user=user, message=message, response=ai_response)
-
-#         return Response({'response': ai_response}, status=status.HTTP_200_OK)
-    
 class TokenBalanceView(GenericAPIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
         return Response({'tokens': request.user.tokens}, status=status.HTTP_200_OK)
+    
+class ChatHistoryView(ListAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = ChatSerializer
+    def get_queryset(self):
+        return self.request.user.chat_set
+    
