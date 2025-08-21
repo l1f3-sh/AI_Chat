@@ -233,14 +233,14 @@ The initial implementation, while functional, had significant security and desig
 
     - **Refactored Solution**: Removed the custom token logic and integrated DRF's built-in `TokenAuthentication`. The login endpoint now uses DRF's `obtain_auth_token` view, which is robust and secure. Protected endpoints now use the simple `permission_classes = [IsAuthenticated]` decorator, making the code cleaner and more declarative.
 
-## Suggestions for Future Improvement
+## Plans for Future Improvement
 
-- **JWT Authentication**: For more advanced security, replace the basic Token Authentication with JSON Web Tokens (JWT). JWTs can carry expiration dates and other claims, making them suitable for more complex applications.
+- [ ] **JWT Authentication**: For more advanced security, replace the basic Token Authentication with JSON Web Tokens (JWT). JWTs can carry expiration dates and other claims, making them suitable for more complex applications.
 
-- **Rate Limiting**: Implement rate limiting on sensitive endpoints like login and chat to prevent brute-force attacks and API abuse.
+- [ ] **Rate Limiting**: Implement rate limiting on sensitive endpoints like login and chat to prevent brute-force attacks and API abuse.
 
-- **Real AI Integration**: Replace the hardcoded dummy response in the `ChatView` with an API call to a real AI service like OpenAI's GPT or Google's Gemini.
+- [ ] **Real AI Integration**: Replace the hardcoded dummy response in the `ChatView` with an API call to a real AI service like OpenAI's GPT or Google's Gemini.
 
-- **API Documentation**: Integrate a library like `drf-spectacular` or `drf-yasg` to automatically generate interactive API documentation (Swagger/OpenAPI).
+- [ ] **API Documentation**: Integrate a library like `drf-spectacular` or `drf-yasg` to automatically generate interactive API documentation (Swagger/OpenAPI).
 
-- **Comprehensive Testing**: Expand the unit tests to cover more edge cases and ensure long-term reliability.
+- [ ] **Comprehensive Testing**: Expand the unit tests to cover more edge cases and ensure long-term reliability.
