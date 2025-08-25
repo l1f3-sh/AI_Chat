@@ -1,21 +1,43 @@
-# MIT License
+# GNU AFFERO GENERAL PUBLIC LICENSE
+Version 3, 19 November 2007
 
-Copyright (c) 2025 l1f3-sh
+Copyright (C) 2025 Peter Nwaofom
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+Preamble
+The GNU Affero General Public License is a free, copyleft license for software and other kinds of works, specifically designed to ensure cooperation with the community in the case of network server software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+The licenses for most software and other practical works are designed to take away your freedom to share and change the works. By contrast, our General Public Licenses are intended to guarantee your freedom to share and change all versions of a program--to make sure it remains free software for all its users.
+
+When you convey a covered work, you may do so under this license, and you must provide access to the source code to all users interacting with it remotely through a network.
+
+TERMS AND CONDITIONS
+0. Definitions. “This License” refers to version 3 of the GNU Affero General Public License.
+
+1. Source Code. The "source code" for a work means the preferred form of the work for making modifications to it.
+
+2. Basic Permissions. You may copy, modify, and distribute the Program and any modified versions.
+
+3. Conveying Modified Source Versions. You may convey a work based on the Program, provided that you license the entire work, as a whole, under this License.
+
+4. Remote Network Interaction; Use with the GNU AGPL. If you modify the Program, your server must offer the complete source code to all users interacting with it remotely through a computer network.
+
+5. No Surrender of Others’ Freedom.
+
+6. Acceptance Not Required for Having Copies.
+
+7. Automatic Licensing of Downstream Recipients.
+
+8. License Compatibility.
+
+9. Termination.
+
+10. Disclaimer of Warranty.
+
+11. Limitation of Liability.
+
+12. Interpretation of Sections 11 and 12.
+
+For the full terms of the GNU Affero General Public License, please refer to:
+https://www.gnu.org/licenses/agpl-3.0.html
